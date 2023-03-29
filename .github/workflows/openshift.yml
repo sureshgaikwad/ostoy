@@ -142,7 +142,7 @@ jobs:
       uses: redhat-actions/s2i-build@v2
       with:
         path_context: 'microservice'
-        builder_image: 'registry.access.redhat.com/rhscl/nodejs-16-rhel7'
+        builder_image: 'registry.access.redhat.com/ubi8/nodejs-16'
         image: 'ostoy-microservice'
 
     # https://github.com/redhat-actions/push-to-registry#readme
