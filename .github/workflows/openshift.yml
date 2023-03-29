@@ -143,6 +143,7 @@ jobs:
       with:
         path_context: 'microservice'
         builder_image: 'quay.io/centos7/nodejs-14-centos7'
+        env_vars: username=${{ env.IMAGE_REGISTRY_USER }}, password=${{ env.IMAGE_REGISTRY_PASSWORD }}
         image: 'ostoy-microservice'
 
     # https://github.com/redhat-actions/push-to-registry#readme
