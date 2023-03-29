@@ -142,7 +142,9 @@ jobs:
       uses: redhat-actions/s2i-build@v2
       with:
         path_context: 'microservice'
-    
+        builder_image: 'nodejs'
+        image: 'ostoy-microservice'
+
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to Quay
       id: push-image
