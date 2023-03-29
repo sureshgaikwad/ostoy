@@ -142,7 +142,7 @@ jobs:
       uses: redhat-actions/s2i-build@v2
       with:
         path_context: 'microservice'
-        builder_image: 'nodejs'
+        builder_image: 'quay.io/centos7/nodejs-16-centos7'
         image: 'ostoy-microservice'
 
     # https://github.com/redhat-actions/push-to-registry#readme
