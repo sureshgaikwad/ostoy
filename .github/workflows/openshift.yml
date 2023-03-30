@@ -145,6 +145,15 @@ jobs:
         builder_image: 'registry.access.redhat.com/ubi8/nodejs-16'
         image: 'gmidha/ostoy-microservice'
 
+    #Setup S2i and Build Frontend container image
+    - name: Steup and Build
+      id: build_image_frontend
+      uses: redhat-actions/s2i-build@v2
+      with:
+        path_context: './'
+        builder_image: 'registry.access.redhat.com/ubi8/nodejs-16'
+        image: 'gmidha/ostoy'
+
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to Quay
       id: push-image
@@ -152,6 +161,16 @@ jobs:
       with:
         image: ${{ steps.build_image_msvc.outputs.image }}
         tags: ${{ steps.build_image_msvc.outputs.tags }}
+        registry: ${{ env.IMAGE_REGISTRY }}
+        username: ${{ env.IMAGE_REGISTRY_USER }}
+        password: ${{ env.IMAGE_REGISTRY_PASSWORD }}
+
+    - name: Push Frontend image to Quay
+      id: push-image-frontend
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        image: ${{ steps.build_image_frontend.outputs.image }}
+        tags: ${{ steps.build_image_frontend.outputs.tags }}
         registry: ${{ env.IMAGE_REGISTRY }}
         username: ${{ env.IMAGE_REGISTRY_USER }}
         password: ${{ env.IMAGE_REGISTRY_PASSWORD }}
