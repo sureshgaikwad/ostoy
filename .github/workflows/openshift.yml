@@ -304,7 +304,7 @@ jobs:
     name: GCP - deploy to OpenShift
     runs-on: ubuntu-20.04
     environment: production
-    needs: aro-deploy
+    needs: [rosa-ci-cd, aro-deploy]
 
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
