@@ -75,7 +75,7 @@ jobs:
   #    CRDA_KEY: ${{ secrets.CRDA_KEY }}
       # SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}       # Either use SNYK_TOKEN or CRDA_KEY
 
-  openshift-ci-cd:
+  aws-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
     name: Build and deploy to OpenShift
@@ -257,7 +257,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        image: ${{needs.job1.outputs.MSVC_IMAGE}}
+        image: ${{needs.aws-ci-cd.outputs.MSVC_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -266,7 +266,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        image: ${{needs.job1.outputs.FEND_IMAGE}}
+        image: ${{needs.aws-ci-cd.outputs.FEND_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
