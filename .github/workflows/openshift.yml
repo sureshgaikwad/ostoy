@@ -75,7 +75,7 @@ jobs:
   #    CRDA_KEY: ${{ secrets.CRDA_KEY }}
       # SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}       # Either use SNYK_TOKEN or CRDA_KEY
 
-  aws-ci-cd:
+  rosa-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
     name: Build and deploy to OpenShift
@@ -229,10 +229,11 @@ jobs:
         echo
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
-  openshift-ci-cd-aro:
+  aro-ci-cd:
     name: Build and deploy to OpenShift
     runs-on: ubuntu-20.04
     environment: production
+    needs: rosa-ci-cd
 
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
@@ -245,8 +246,8 @@ jobs:
         oc: 4
     
     - env:
-          OUTPUT1: ${{needs.aws-ci-cd.outputs.MSVC_IMAGE}}
-          OUTPUT2: ${{needs.aws-ci-cd.outputs.FEND_IMAGE}}
+          OUTPUT1: ${{ needs.aws-ci-cd.outputs.MSVC_IMAGE }}
+          OUTPUT2: ${{ needs.aws-ci-cd.outputs.FEND_IMAGE }}
       run: echo "$OUTPUT1 $OUTPUT2"
 
     - name: Log in to OpenShift
@@ -262,7 +263,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        image: ${{needs.aws-ci-cd.outputs.MSVC_IMAGE}}
+        image: ${{needs.rosa-ci-cd.outputs.MSVC_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -271,7 +272,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        image: ${{needs.aws-ci-cd.outputs.FEND_IMAGE}}
+        image: ${{needs.rosa-ci-cd.outputs.FEND_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
