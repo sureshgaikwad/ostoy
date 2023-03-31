@@ -244,6 +244,11 @@ jobs:
       with:
         oc: 4
     
+    - env:
+          OUTPUT1: ${{needs.aws-ci-cd.outputs.MSVC_IMAGE}}
+          OUTPUT2: ${{needs.aws-ci-cd.outputs.FEND_IMAGE}}
+      run: echo "$OUTPUT1 $OUTPUT2"
+
     - name: Log in to OpenShift
       uses: redhat-actions/oc-login@v1
       with:
