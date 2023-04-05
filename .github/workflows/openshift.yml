@@ -47,7 +47,7 @@ env:
 
   # 🖊️ EDIT to change the image registry settings.
   # Registries such as GHCR, Quay.io, and Docker Hub are supported.
-  IMAGE_REGISTRY: "quay.io"
+  # IMAGE_REGISTRY: "quay.io"
   IMAGE_REGISTRY_USER: "augustrh"
   IMAGE_REGISTRY_PASSWORD: ${{ secrets.QUAY_TOKEN }}
 
@@ -141,7 +141,7 @@ jobs:
         echo "IMAGE_TAGS=latest ${GITHUB_SHA::12}" | tee -a $GITHUB_ENV
     
     #Setup S2i and Build container image
-    - name: Steup and Build
+    - name: Setup and Build backend container image
       id: build_image_msvc
       uses: redhat-actions/s2i-build@v2
       with:
@@ -150,7 +150,7 @@ jobs:
         image: 'augustrh/ostoy-microservice'
 
     #Setup S2i and Build Frontend container image
-    - name: Steup and Build
+    - name: Setup and Build frontend container image
       id: build_image_frontend
       uses: redhat-actions/s2i-build@v2
       with:
