@@ -21,7 +21,6 @@
 #    The default build type is by using a Dockerfile at the root of the repository,
 #    but can be replaced with a different file, a source-to-image build, or a step-by-step buildah build.
 # 5. Commit and push the workflow file to your default branch to trigger a workflow run.
-# Test
 
 # 👋 Visit our GitHub organization at https://github.com/redhat-actions/ to see our actions and provide feedback.
 
@@ -50,7 +49,6 @@ env:
   # Registries such as GHCR, Quay.io, and Docker Hub are supported.
   IMAGE_REGISTRY: "quay.io"
   IMAGE_REGISTRY_USER: "augustrh"
-  # IMAGE_REGISTRY_USER: ${{ secrets.QUAY_USER }}
   IMAGE_REGISTRY_PASSWORD: ${{ secrets.QUAY_TOKEN }}
 
   # 🖊️ EDIT to specify custom tags for the container image, or default tags will be generated below.
