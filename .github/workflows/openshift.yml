@@ -149,7 +149,8 @@ jobs:
       with:
         path_context: 'microservice'
         builder_image: 'registry.access.redhat.com/ubi8/nodejs-16'
-        image: 'gmidha/ostoy-microservice'
+        # image: 'gmidha/ostoy-microservice'
+        image: '`${{ secrets.QUAY_USER }}`/ostoy-microservice'
 
     #Setup S2i and Build Frontend container image
     - name: Steup and Build
@@ -158,7 +159,8 @@ jobs:
       with:
         path_context: './'
         builder_image: 'registry.access.redhat.com/ubi8/nodejs-16'
-        image: 'gmidha/ostoy'
+        # image: 'gmidha/ostoy'
+        image: '`${{ secrets.QUAY_USER }}`/ostoy'
 
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to Quay
