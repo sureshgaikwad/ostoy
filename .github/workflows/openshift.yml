@@ -78,7 +78,7 @@ jobs:
   rosa-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
-    name: Build and deploy to OpenShift
+    name: Build and deploy to OpenShift - ROSA
     runs-on: ubuntu-20.04
     environment: production
 
@@ -230,7 +230,7 @@ jobs:
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
   aro-ci-cd:
-    name: Build and deploy to OpenShift
+    name: Build and deploy to OpenShift - ARO
     runs-on: ubuntu-20.04
     environment: production
     needs: rosa-ci-cd
