@@ -34,6 +34,8 @@ env:
   OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
   ARO_SERVER: ${{ secrets.ARO_SERVER }}
   ARO_TOKEN: ${{ secrets.ARO_TOKEN }}
+  GCP_SERVER: ${{ secrets.GCP_SERVER }}
+  GCP_TOKEN: ${{ secrets.GCP_TOKEN }}
   # 🖊️ EDIT to set the kube context's namespace after login. Leave blank to use your user's default namespace.
   OPENSHIFT_NAMESPACE: ""
 
