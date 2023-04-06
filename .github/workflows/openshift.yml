@@ -320,8 +320,9 @@ jobs:
     steps:
 
     - name: Test GCP variable
-      if: env.GCP_LIVE == 'true'
+      if: env.GCP_LIVE != 'true'
       run: |
+        echo "GCP Live is not true so we will exit"
         gh run cancel ${{ github.run_id }}
         gh run watch ${{ github.run_id }}
       env:
