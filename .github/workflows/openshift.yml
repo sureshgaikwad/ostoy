@@ -320,9 +320,9 @@ jobs:
     steps:
 
     - name: Test GCP variable
-      if: env.GCP_LIVE == ''
+      if: env.GCP_LIVE == 'true'
       run: |
-        echo "gcp is not set" 
+        echo "gcp is live and ready to go" 
 
     - name: Install oc
       uses: redhat-actions/openshift-tools-installer@v1
