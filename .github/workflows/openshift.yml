@@ -34,8 +34,7 @@ env:
   OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
   ARO_SERVER: ${{ secrets.ARO_SERVER }}
   ARO_TOKEN: ${{ secrets.ARO_TOKEN }}
-#  GCP_SERVER: ${{ secrets.GCP_SERVER }}
-  GCP_SERVER: NOTBOO
+  GCP_SERVER: ${{ secrets.GCP_SERVER }}
   GCP_TOKEN: ${{ secrets.GCP_TOKEN }}
   # 🖊️ EDIT to set the kube context's namespace after login. Leave blank to use your user's default namespace.
   OPENSHIFT_NAMESPACE: ""
@@ -308,7 +307,6 @@ jobs:
 
   gcp-ci-cd:
     name: Build and deploy to OpenShift - GCP
-    if: GCP_SERVER == "BOO"
     runs-on: ubuntu-20.04
     environment: production
     needs: [rosa-ci-cd, aro-ci-cd]
