@@ -308,6 +308,7 @@ jobs:
     runs-on: ubuntu-20.04
     environment: production
     needs: [rosa-ci-cd, aro-ci-cd]
+    if: ${{ env.GCP_SERVER }}
 
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
