@@ -321,8 +321,10 @@ jobs:
 
     - name: Test GCP variable
       if: env.GCP_LIVE == 'true'
-      run: |
-        echo "gcp is live and ready to go" 
+      #run: |
+      #  echo "gcp is live and ready to go" 
+      #  exit_with_success
+      run: exit_with_success
 
     - name: Install oc
       uses: redhat-actions/openshift-tools-installer@v1
