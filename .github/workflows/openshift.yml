@@ -307,10 +307,10 @@ jobs:
 
   gcp-ci-cd:
     name: Build and deploy to OpenShift - GCP
+    if: ${{ env.GCP_SERVER == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
     needs: [rosa-ci-cd, aro-ci-cd]
-    if: GCP_SERVER
 
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
