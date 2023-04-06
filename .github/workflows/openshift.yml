@@ -308,7 +308,7 @@ jobs:
 
   gcp-ci-cd:
     name: Build and deploy to OpenShift - GCP
-    if: ${{ env.GCP_SERVER == "BOO" }}
+    if: GCP_SERVER == "BOO"
     runs-on: ubuntu-20.04
     environment: production
     needs: [rosa-ci-cd, aro-ci-cd]
