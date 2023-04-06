@@ -308,11 +308,11 @@ jobs:
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
   gcp-ci-cd:
-      name: Build and deploy to OpenShift - GCP
-      if: ${{ env.GCP_LIVE == 'true' }}
-      runs-on: ubuntu-20.04
-      environment: production
-      needs: [rosa-ci-cd, aro-ci-cd]
+    name: Build and deploy to OpenShift - GCP
+    if: ${{ env.GCP_LIVE == 'true' }}
+    runs-on: ubuntu-20.04
+    environment: production
+    needs: [rosa-ci-cd, aro-ci-cd]
 
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
