@@ -322,12 +322,7 @@ jobs:
     - name: Test GCP variable
       if: env.GCP_LIVE != 'true'
       run: |
-        echo "GCP Live is not true so we will exit"
-        gh run cancel ${{ github.run_id }}
-        gh run watch ${{ github.run_id }}
-        exit 0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        echo "GCP Live is not true so we will exit"; exit 0
 
     - name: Install oc
       uses: redhat-actions/openshift-tools-installer@v1
