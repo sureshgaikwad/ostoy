@@ -308,8 +308,13 @@ jobs:
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
   gcp-ci-cd:
+
+    - name: Determine app name
+      if: env.APP_NAME == ''
+      run: |
+        echo "APP_NAME=$(basename $PWD)" | tee -a $GITHUB_ENV
+
     name: Build and deploy to OpenShift - GCP
-    if: ${{ env.GCP_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
     needs: [rosa-ci-cd, aro-ci-cd]
@@ -319,6 +324,12 @@ jobs:
       SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
     
     steps:
+
+    - name: Test GCP variable
+      if: env.GCP_LIVE == ''
+      run: |
+        echo "gcp is not set" 
+
     - name: Install oc
       uses: redhat-actions/openshift-tools-installer@v1
       with:
