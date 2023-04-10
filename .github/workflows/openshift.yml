@@ -37,7 +37,7 @@ env:
   GCP_SERVER: ${{ secrets.GCP_SERVER }}
   GCP_TOKEN: ${{ secrets.GCP_TOKEN }}
   ARO_LIVE: ${{ vars.ARO_LIVE }}
-  #GCP_LIVE: ${{ secrets.GCP_LIVE }}
+  GCP_LIVE: ${{ vars.GCP_LIVE }}
   # 🖊️ EDIT to set the kube context's namespace after login. Leave blank to use your user's default namespace.
   OPENSHIFT_NAMESPACE: ""
 
@@ -83,7 +83,6 @@ jobs:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
     name: Build and deploy to OpenShift - ROSA
-    # if: ${{ vars.ARO_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
 
@@ -93,10 +92,10 @@ jobs:
       MSVC_IMAGE: ${{ steps.push-image.outputs.registry-path }}
       FEND_IMAGE: ${{ steps.push-image-frontend.outputs.registry-path }}
       ARO_LIVE: ${{ env.ARO_LIVE }}
+      GCP_LIVE: ${{ env.GCP_LIVE }}
 
     steps:
     - name: Check for required secrets
-      # if: ${{ env.ARO_LIVE =='true' }} # but cant call this at job level is a bug
       uses: actions/github-script@v6
       with:
         script: |
@@ -313,7 +312,7 @@ jobs:
 
   gcp-ci-cd:
     name: Build and deploy to OpenShift - GCP
-    if: github.repository == 'octo-org/octo-repo-prod'
+    if: ${{ vars.GCP_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
     needs: [rosa-ci-cd, aro-ci-cd]
