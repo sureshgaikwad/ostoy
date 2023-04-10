@@ -237,7 +237,7 @@ jobs:
 
   aro-ci-cd:
     name: Build and deploy to OpenShift - ARO
-    if: steps.rosa-ci-cd.outputs.ARO_LIVE = 'true'
+    if: jobs.rosa-ci-cd.outputs.ARO_LIVE = 'true'
     runs-on: ubuntu-20.04
     environment: production
     needs: rosa-ci-cd
