@@ -94,6 +94,7 @@ jobs:
 
     steps:
     - name: Check for required secrets
+      if: ${{ env.ARO_LIVE =='false' }}
       uses: actions/github-script@v6
       with:
         script: |
