@@ -309,12 +309,10 @@ jobs:
 
   gcp-ci-cd:
     name: Build and deploy to OpenShift - GCP
+    if: env.GCP_LIVE = 'true'
     runs-on: ubuntu-20.04
     environment: production
     needs: [rosa-ci-cd, aro-ci-cd]
-    if: env.GCP_LIVE == 'true'
-     run: |
-       echo "GCP Live is true so we will run GCP code"
     
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
