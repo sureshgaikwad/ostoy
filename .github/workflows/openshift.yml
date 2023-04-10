@@ -36,8 +36,8 @@ env:
   ARO_TOKEN: ${{ secrets.ARO_TOKEN }}
   GCP_SERVER: ${{ secrets.GCP_SERVER }}
   GCP_TOKEN: ${{ secrets.GCP_TOKEN }}
-  ARO_LIVE: ${{ secrets.ARO_LIVE }}
-  GCP_LIVE: ${{ secrets.GCP_LIVE }}
+  #ARO_LIVE: ${{ secrets.ARO_LIVE }}
+  #GCP_LIVE: ${{ secrets.GCP_LIVE }}
   # 🖊️ EDIT to set the kube context's namespace after login. Leave blank to use your user's default namespace.
   OPENSHIFT_NAMESPACE: ""
 
