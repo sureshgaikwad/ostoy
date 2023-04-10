@@ -309,7 +309,7 @@ jobs:
 
   gcp-ci-cd:
     name: Build and deploy to OpenShift - GCP
-    if: env.GCP_LIVE = 'true'
+    if: github.repository == 'octo-org/octo-repo-prod'
     runs-on: ubuntu-20.04
     environment: production
     needs: [rosa-ci-cd, aro-ci-cd]
