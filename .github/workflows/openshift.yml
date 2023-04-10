@@ -94,7 +94,7 @@ jobs:
 
     steps:
     - name: Check for required secrets
-      if: ${{ env.ARO_LIVE =='true' }}
+      # if: ${{ env.ARO_LIVE =='true' }}
       uses: actions/github-script@v6
       with:
         script: |
@@ -236,6 +236,7 @@ jobs:
 
   aro-ci-cd:
     name: Build and deploy to OpenShift - ARO
+    if: ${{ env.ARO_LIVE =='true' }}
     runs-on: ubuntu-20.04
     environment: production
     needs: rosa-ci-cd
