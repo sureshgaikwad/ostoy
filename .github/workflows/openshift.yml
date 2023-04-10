@@ -36,7 +36,7 @@ env:
   ARO_TOKEN: ${{ secrets.ARO_TOKEN }}
   GCP_SERVER: ${{ secrets.GCP_SERVER }}
   GCP_TOKEN: ${{ secrets.GCP_TOKEN }}
-  #ARO_LIVE: ${{ secrets.ARO_LIVE }}
+  ARO_LIVE: ${{ vars.ARO_LIVE }}
   #GCP_LIVE: ${{ secrets.GCP_LIVE }}
   # 🖊️ EDIT to set the kube context's namespace after login. Leave blank to use your user's default namespace.
   OPENSHIFT_NAMESPACE: ""
@@ -235,7 +235,7 @@ jobs:
 
   aro-ci-cd:
     name: Build and deploy to OpenShift - ARO
-    if: github.env.ARO_LIVE == 'true'
+    if: ${{ env.ARO_SERVER }} == 'true'
     runs-on: ubuntu-20.04
     environment: production
     needs: rosa-ci-cd
