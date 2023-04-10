@@ -235,7 +235,6 @@ jobs:
 
   aro-ci-cd:
     name: Build and deploy to OpenShift - ARO
-    if: ${{ env.ARO_LIVE }} == 'true'
     runs-on: ubuntu-20.04
     environment: production
     needs: rosa-ci-cd
@@ -246,6 +245,7 @@ jobs:
     
     steps:
     - name: Install oc
+      if: ${{ env.ARO_LIVE }} == 'nottrue'
       uses: redhat-actions/openshift-tools-installer@v1
       with:
         oc: 4
