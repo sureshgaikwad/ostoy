@@ -91,10 +91,11 @@ jobs:
       SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
       MSVC_IMAGE: ${{ steps.push-image.outputs.registry-path }}
       FEND_IMAGE: ${{ steps.push-image-frontend.outputs.registry-path }}
+      ARO_LIVE: ${{ env.ARO_LIVE }}
 
     steps:
     - name: Check for required secrets
-      # if: ${{ env.ARO_LIVE =='true' }}
+      # if: ${{ env.ARO_LIVE =='true' }} # but cant call this at job level is a bug
       uses: actions/github-script@v6
       with:
         script: |
@@ -236,7 +237,7 @@ jobs:
 
   aro-ci-cd:
     name: Build and deploy to OpenShift - ARO
-    if: ${{ env.ARO_LIVE =='true' }}
+    if: steps.rosa-ci-cd.outputs.ARO_LIVE = 'true'
     runs-on: ubuntu-20.04
     environment: production
     needs: rosa-ci-cd
@@ -247,7 +248,6 @@ jobs:
     
     steps:
     - name: Install oc
-      if: ${{ env.ARO_LIVE }} == 'nottrue'
       uses: redhat-actions/openshift-tools-installer@v1
       with:
         oc: 4
