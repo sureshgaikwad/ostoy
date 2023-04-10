@@ -83,6 +83,7 @@ jobs:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
     name: Build and deploy to OpenShift - ROSA
+    if: github.repository == 'octo-org/octo-repo-prod'
     runs-on: ubuntu-20.04
     environment: production
 
