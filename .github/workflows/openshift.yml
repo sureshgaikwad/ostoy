@@ -83,7 +83,7 @@ jobs:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
     name: Build and deploy to OpenShift - ROSA
-    if: ${{ env.ARO_LIVE == 'true' }}
+    if: ${{ vars.ARO_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
 
