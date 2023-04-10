@@ -24,7 +24,7 @@
 
 # 👋 Visit our GitHub organization at https://github.com/redhat-actions/ to see our actions and provide feedback.
 
-name: OpenShift
+name: OpenShift Everywhere
 
 env:
   # 🖊️ EDIT your repository secrets to log into your OpenShift cluster and set up the context.
@@ -82,7 +82,7 @@ jobs:
   rosa-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
-    name: Build and deploy to OpenShift - ROSA
+    name: ROSA build and deploy
     runs-on: ubuntu-20.04
     environment: production
 
@@ -236,7 +236,7 @@ jobs:
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
   aro-ci-cd:
-    name: Build and deploy to OpenShift - ARO
+    name: ARO build and deploy
     if: ${{ vars.ARO_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
@@ -311,7 +311,7 @@ jobs:
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
   gcp-ci-cd:
-    name: Build and deploy to OpenShift - GCP
+    name: GCP OpenShift build and deploy
     if: ${{ vars.GCP_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
