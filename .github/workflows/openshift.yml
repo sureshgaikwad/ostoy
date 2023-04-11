@@ -253,7 +253,7 @@ jobs:
     if: ${{ vars.ARO_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
-    needs: app-ci-cd
+    needs: [rosa-ci-cd, app-ci-cd]
 
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
@@ -329,7 +329,7 @@ jobs:
     runs-on: ubuntu-20.04
     environment: production
     # needs: [rosa-ci-cd, aro-ci-cd]
-    needs: app-ci-cd
+    needs: [rosa-ci-cd, app-ci-cd]
     
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
