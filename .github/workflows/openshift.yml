@@ -335,7 +335,7 @@ jobs:
     if: ${{ vars.GCP_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
-    needs: rosa-deploy
+    needs: [rosa-deploy, image-ci-cd]
     # needs: [rosa-ci-cd, app-ci-cd]
     
     outputs:
