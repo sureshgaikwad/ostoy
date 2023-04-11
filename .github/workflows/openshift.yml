@@ -356,21 +356,21 @@ jobs:
         insecure_skip_tls_verify: true
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
     
-    - name: Create and expose app
+    - name: Create and expose app - backend
       id: deploy-and-expose
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        image: ${{needs.image-ci-cd.outputs.MSVC_IMAGE}}
+        image: ${{ needs.image-ci-cd.outputs.MSVC_IMAGE }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
-    - name: Create and expose app
+    - name: Create and expose app - frontend
       id: deploy-and-expose-frontend
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        image: ${{needs.image-ci-cd.outputs.FEND_IMAGE}}
+        image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
