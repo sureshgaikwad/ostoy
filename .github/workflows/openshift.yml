@@ -38,6 +38,7 @@ env:
   GCP_TOKEN: ${{ secrets.GCP_TOKEN }}
   ARO_LIVE: ${{ vars.ARO_LIVE }}
   GCP_LIVE: ${{ vars.GCP_LIVE }}
+  ROSA_LIVE: ${{ vars.ROSA_LIVE }}
   # 🖊️ EDIT to set the kube context's namespace after login. Leave blank to use your user's default namespace.
   OPENSHIFT_NAMESPACE: ""
 
@@ -93,6 +94,7 @@ jobs:
       FEND_IMAGE: ${{ steps.push-image-frontend.outputs.registry-path }}
       ARO_LIVE: ${{ env.ARO_LIVE }}
       GCP_LIVE: ${{ env.GCP_LIVE }}
+      ROSA_LIVE: ${{ env.ROSA_LIVE }}
 
     steps:
     - name: Check for required secrets
@@ -189,6 +191,7 @@ jobs:
   
   rosa-deploy:
     name: DEPLOY ROSA 
+    if: ${{ vars.ROSA_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production 
     needs: image-ci-cd
