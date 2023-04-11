@@ -82,7 +82,7 @@ jobs:
   app-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
-    name: APP build
+    name: Application build
     runs-on: ubuntu-20.04
     environment: production
 
@@ -190,7 +190,7 @@ jobs:
   rosa-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
-    name: ROSA build and deploy
+    name: ROSA deployment
     runs-on: ubuntu-20.04
     environment: production
     needs: app-ci-cd
@@ -249,7 +249,7 @@ jobs:
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
   aro-ci-cd:
-    name: ARO build and deploy
+    name: ARO deployment
     if: ${{ vars.ARO_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
@@ -324,7 +324,7 @@ jobs:
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
   gcp-ci-cd:
-    name: GCP OpenShift build and deploy
+    name: GCP OpenShift deployment
     if: ${{ vars.GCP_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
