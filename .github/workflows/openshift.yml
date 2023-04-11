@@ -79,10 +79,10 @@ jobs:
   #    CRDA_KEY: ${{ secrets.CRDA_KEY }}
       # SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}       # Either use SNYK_TOKEN or CRDA_KEY
 
-  rosa-ci-cd:
+  app-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
-    name: ROSA build and deploy
+    name: APP build
     runs-on: ubuntu-20.04
     environment: production
 
@@ -187,6 +187,15 @@ jobs:
 
     # The path the image was pushed to is now stored in ${{ steps.push-image.outputs.registry-path }}
 
+  rosa-ci-cd:
+    # 🖊️ Uncomment this if you are using CRDA scan step above
+    # needs: crda-scan
+    name: ROSA build and deploy
+    runs-on: ubuntu-20.04
+    environment: production
+    needs: app-ci-cd
+
+    steps:
     - name: Install oc
       uses: redhat-actions/openshift-tools-installer@v1
       with:
