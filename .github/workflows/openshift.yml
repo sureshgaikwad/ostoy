@@ -247,6 +247,19 @@ jobs:
         echo "==================================================================================="
         echo
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
+        
+    - name: Print application FRONTEND URL
+      env:
+        ROUTE: ${{ steps.deploy-and-expose-frontend.outputs.route }}
+        SELECTOR: ${{ steps.deploy-and-expose-frontend.outputs.selector }}
+      run: |
+        [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
+        echo
+        echo "======================== Your application is available at: ========================"
+        echo ${{ env.ROUTE }}
+        echo "==================================================================================="
+        echo
+        echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
   aro-ci-cd:
     name: ARO deployment
