@@ -290,7 +290,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        image: ${{needs.rosa-ci-cd.outputs.MSVC_IMAGE}}
+        image: ${{needs.image-ci-cd.outputs.MSVC_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -299,7 +299,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        image: ${{needs.rosa-ci-cd.outputs.FEND_IMAGE}}
+        image: ${{needs.image-ci-cd.outputs.FEND_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
@@ -361,7 +361,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        image: ${{needs.rosa-ci-cd.outputs.MSVC_IMAGE}}
+        image: ${{needs.image-ci-cd.outputs.MSVC_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -370,7 +370,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        image: ${{needs.rosa-ci-cd.outputs.FEND_IMAGE}}
+        image: ${{needs.image-ci-cd.outputs.FEND_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
