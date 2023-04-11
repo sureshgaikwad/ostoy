@@ -83,7 +83,7 @@ jobs:
   image-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
-    name: Build and push image
+    name: Build and push image to quay
     runs-on: ubuntu-20.04
     environment: production
 
@@ -190,7 +190,7 @@ jobs:
     # The path the image was pushed to is now stored in ${{ steps.push-image.outputs.registry-path }}
   
   rosa-deploy:
-    name: DEPLOY ROSA 
+    name: ROSA deployment 
     if: ${{ vars.ROSA_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production 
