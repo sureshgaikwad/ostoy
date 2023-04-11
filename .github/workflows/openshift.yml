@@ -87,7 +87,7 @@ jobs:
     # needs: crda-scan
     name: Build and push to quay
     runs-on: ubuntu-20.04
-    environment: production
+    environment: development
 
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
