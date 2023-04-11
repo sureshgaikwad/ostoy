@@ -194,6 +194,10 @@ jobs:
     runs-on: ubuntu-20.04
     environment: production
     needs: app-ci-cd
+    
+    outputs:
+      ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
+      SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
 
     steps:
     - name: Install oc
@@ -217,7 +221,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        image: ${{ steps.push-image.outputs.registry-path }}
+        image: ${{needs.app-ci-cd.outputs.MSVC_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -226,7 +230,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        image: ${{ steps.push-image-frontend.outputs.registry-path }}
+        image: ${{needs.app-ci-cd.outputs.MSVC_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
@@ -279,7 +283,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        image: ${{needs.rosa-ci-cd.outputs.MSVC_IMAGE}}
+        image: ${{needs.app-ci-cd.outputs.MSVC_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -288,7 +292,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        image: ${{needs.rosa-ci-cd.outputs.FEND_IMAGE}}
+        image: ${{needs.app-ci-cd.outputs.FEND_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
@@ -350,7 +354,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        image: ${{needs.rosa-ci-cd.outputs.MSVC_IMAGE}}
+        image: ${{needs.app-ci-cd.outputs.MSVC_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -359,7 +363,7 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        image: ${{needs.rosa-ci-cd.outputs.FEND_IMAGE}}
+        image: ${{needs.app-ci-cd.outputs.FEND_IMAGE}}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
