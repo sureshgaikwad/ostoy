@@ -83,7 +83,7 @@ jobs:
   image-ci-cd:
     # 🖊️ Uncomment this if you are using CRDA scan step above
     # needs: crda-scan
-    name: Build and push image to quay
+    name: Build and push to quay
     runs-on: ubuntu-20.04
     environment: production
 
