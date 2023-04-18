@@ -266,7 +266,7 @@ jobs:
     if: ${{ vars.ARO_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
-    needs: [image-ci-cd]
+    needs: [rosa-deploy, image-ci-cd]
 
     outputs:
       ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
@@ -337,11 +337,11 @@ jobs:
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
 
   gcp-ci-cd:
-    name: GCP OpenShift deployment
+    name: OSD on GCP OpenShift deployment
     if: ${{ vars.GCP_LIVE == 'true' }}
     runs-on: ubuntu-20.04
     environment: production
-    needs: [image-ci-cd]
+    needs: [aro-ci-cd, image-ci-cd]
     # needs: [rosa-ci-cd, app-ci-cd]
     
     outputs:
