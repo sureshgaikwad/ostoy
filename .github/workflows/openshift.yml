@@ -43,6 +43,8 @@ env:
   ROSA_LIVE: ${{ vars.ROSA_LIVE }}
   # 🖊️ EDIT to set the kube context's namespace after login. Leave blank to use your user's default namespace.
   OPENSHIFT_NAMESPACE: ""
+  QUAY_FEND_LINK: https://quay.io/repository/augustrh/ostoy
+  QUAY_BEND_LINK: https://quay.io/repository/augustrh/ostoy-microservice
 
   # 🖊️ EDIT to set a name for your OpenShift app, or a default one will be generated below.
   APP_NAME: "ostoy-microservice"
@@ -222,7 +224,7 @@ jobs:
       with:
         app_name: ${{ env.APP_NAME }}
         # image: ${{ needs.image-ci-cd.outputs.MSVC_IMAGE }}
-        image: https://quay.io/repository/augustrh/ostoy-microservice
+        image: ${{ env.QUAY_BEND_LINK }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -232,7 +234,7 @@ jobs:
       with:
         app_name: 'ostoy'
         # image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
-        image: https://quay.io/repository/augustrh/ostoy
+        image: ${{ env.QUAY_FEND_LINK }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
