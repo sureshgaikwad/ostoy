@@ -196,7 +196,7 @@ jobs:
     name: ROSA deployment 
     if: ${{ vars.ROSA_LIVE == 'true' }}
     runs-on: ubuntu-20.04
-    environment: developement 
+    environment: ROSA_DEV 
     needs: image-ci-cd
 
     steps:
