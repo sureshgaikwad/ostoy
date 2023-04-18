@@ -91,7 +91,9 @@ jobs:
     
     steps: 
     - name: Build and deploy to quay
-  
+      run: |
+        echo "hi"
+    
   rosa-deploy:
     name: ROSA deployment 
     if: ${{ vars.ROSA_LIVE == 'true' }}
