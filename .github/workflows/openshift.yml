@@ -87,12 +87,16 @@ jobs:
   image-ci-cd:
     name: Build and push to quay
     runs-on: ubuntu-20.04
-    environment: development
+    environment: build
     
     steps: 
     - name: Build and deploy to quay
       run: |
         echo "hi"
+    - name: Build and push to Quay
+      uses: juliangruber/sleep-action@v1
+      with:
+       time: 10s
     
   rosa-deploy:
     name: ROSA deployment 
