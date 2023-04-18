@@ -340,7 +340,7 @@ jobs:
     name: OSD on GCP OpenShift deployment
     if: ${{ vars.GCP_LIVE == 'true' }}
     runs-on: ubuntu-20.04
-    environment: production
+    environment: GCP_PROD
     needs: [rosa2-ci-cd, rosa-deploy, image-ci-cd]
     # needs: [rosa-ci-cd, app-ci-cd]
     
@@ -411,7 +411,7 @@ jobs:
     name: ROSA Prod deployment
     if: ${{ vars.ROSA_PROD == 'true' }}
     runs-on: ubuntu-20.04
-    environment: production
+    environment: ROSA_PROD
     needs: [rosa-deploy, image-ci-cd]
     # needs: [rosa-ci-cd, app-ci-cd]
     
