@@ -265,7 +265,7 @@ jobs:
     name: ARO deployment
     if: ${{ vars.ARO_LIVE == 'true' }}
     runs-on: ubuntu-20.04
-    environment: production
+    environment: ARO_PROD
     needs: [rosa2-ci-cd, rosa-deploy, image-ci-cd]
 
     outputs:
