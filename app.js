@@ -471,6 +471,8 @@ function detectCloudEnvironment() {
     return 'Azure Functions';
   } else if (process.env.HEROKU_APP_NAME) {
     return 'Heroku';
+  } else if (process.env.NPM_RUN) {
+    return 'start';  
   } else {
     return 'Unknown or Local';
   }
