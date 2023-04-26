@@ -280,6 +280,7 @@ jobs:
     - name: Set ROSA environment variable
       run: |
         oc set env deployment/ostoy ROSA=true
+        oc set env deployment/ostoy ORANGE=true
 
   aro-ci-cd:
     name: ARO deployment
