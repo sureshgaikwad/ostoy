@@ -10,7 +10,7 @@ const http = require('http');
 const dns = require('dns');
 const AWS = require('aws-sdk');
 const appVersion = '1.5.0';
-const appEnv = 'CLOUD'
+const appEnv = 'CLOUD';
 
 /*
   CONFIGURE APPLICATION
