@@ -485,6 +485,30 @@ function detectCloudEnvironment() {
 const cloudEnvironment = detectCloudEnvironment();
 app.locals.cloudEnvironment = cloudEnvironment;
 
+function detectCloudColor() {
+  if (process.env.AWS_EXECUTION_ENV) {
+    return 'AWS Lambda';
+  } else if (process.env.GCP_PROJECT || process.env.GOOGLE_CLOUD_PROJECT) {
+    return 'Google Cloud';
+  } else if (process.env.AZURE_FUNCTIONS_ENVIRONMENT) {
+    return 'Azure Functions';
+  } else if (process.env.HEROKU_APP_NAME) {
+    return 'Heroku';
+  } else if (process.env.RED) {
+    return 'st';  
+  } else if (process.env.ORANGE) {
+    return 'class="card-pf-title text-warning mb-3" style="height: 22px;"';
+  } else if (process.env.BLUE) {
+    return 'st';  
+  } else if (process.env.GREEN) {
+    return 'st';  
+  } else {
+    return 'Unknown or Local';
+  }
+}
+
+const cloudColor = detectCloudColor();
+app.locals.cloudColor = cloudColor;
 
 /*
   ABOUT URLS/FUNCTIONS
