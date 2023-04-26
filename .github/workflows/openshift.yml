@@ -276,6 +276,10 @@ jobs:
         echo "==================================================================================="
         echo
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
+        
+    - name: Set ROSA environment variable
+      run: |
+        oc set env deployment/ostoy ROSA=true
 
   aro-ci-cd:
     name: ARO deployment
