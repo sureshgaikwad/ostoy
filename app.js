@@ -483,6 +483,7 @@ function detectCloudEnvironment() {
 }
 
 const cloudEnvironment = detectCloudEnvironment();
+app.locals.cloudEnvironment = cloudEnvironment;
 
 
 /*
