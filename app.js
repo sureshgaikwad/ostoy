@@ -475,8 +475,8 @@ function detectCloudEnvironment() {
     return 'ROSA';  
   } else if (process.env.ARO) {
     return 'ARO';  
-  } else if (process.env.GCP) {
-    return 'GCP';  
+  } else if (process.env.OSD) {
+    return 'OSD';  
   } else {
     return 'Unknown or Local';
   }
