@@ -357,6 +357,10 @@ jobs:
         echo "==================================================================================="
         echo
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""
+      
+    - name: Set ARO environment variable
+      run: |
+        oc set env deployment/ostoy ARO=true
 
   gcp-ci-cd:
     name: OSD on GCP OpenShift deployment
@@ -430,6 +434,10 @@ jobs:
         echo "==================================================================================="
         echo
         echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""  
+        
+    - name: Set OSD environment variable
+      run: |
+        oc set env deployment/ostoy OSD=true
 
   rosa2-ci-cd:
     name: ROSA Prod deployment
@@ -502,4 +510,8 @@ jobs:
         echo ${{ env.ROUTE }}
         echo "==================================================================================="
         echo
-        echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""  
+        echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\"" 
+        
+    - name: Set ROSA environment variable
+      run: |
+        oc set env deployment/ostoy ROSA=true
