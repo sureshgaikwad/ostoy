@@ -499,7 +499,7 @@ function detectCloudColor() {
   } else if (process.env.BLUE) {
     return 'class="card-pf-title text-info mb-3" style="height: 22px;"';  
   } else if (process.env.GREEN) {
-    return 'st';  
+    return 'class="card-pf-title text-success mb-3" style="height: 22px;"';  
   } else {
     return 'Unknown or Local';
   }
