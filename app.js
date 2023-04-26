@@ -9,8 +9,7 @@ const fs = require('fs');
 const http = require('http');
 const dns = require('dns');
 const AWS = require('aws-sdk');
-const appVersion = '1.5.0.1';
-const appEnv = 'CLOUD';
+const appVersion = '1.5.0';
 
 /*
   CONFIGURE APPLICATION
@@ -64,7 +63,6 @@ let hasConfigMap = fs.existsSync(configFile);
  */
 app.locals.pod = pod;
 app.locals.appVersion = appVersion;
-app.locals.appEnv = appEnv;
 app.locals.hasFilesystem = hasFilesystem;
 app.locals.hasSecret = hasSecret;
 app.locals.hasConfigMap = hasConfigMap;
