@@ -462,6 +462,23 @@ function processDNS(hostname, response) {
   });
 }
 
+function detectCloudEnvironment() {
+  if (process.env.AWS_EXECUTION_ENV) {
+    return 'AWS Lambda';
+  } else if (process.env.GCP_PROJECT || process.env.GOOGLE_CLOUD_PROJECT) {
+    return 'Google Cloud';
+  } else if (process.env.AZURE_FUNCTIONS_ENVIRONMENT) {
+    return 'Azure Functions';
+  } else if (process.env.HEROKU_APP_NAME) {
+    return 'Heroku';
+  } else {
+    return 'Unknown or Local';
+  }
+}
+
+const cloudEnvironment = detectCloudEnvironment();
+
+
 /*
   ABOUT URLS/FUNCTIONS
  */
@@ -474,6 +491,7 @@ app.get('/about', function(request, response) {
   START SERVER
  */
 console.log(`Version: ${appVersion}` );
+console.log(This app is running on: ${cloudEnvironment});
 
 //the first time the app is run this will be set to false thus requiring a check
 //of if the app can access the S3 bucket
