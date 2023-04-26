@@ -64,6 +64,7 @@ let hasConfigMap = fs.existsSync(configFile);
  */
 app.locals.pod = pod;
 app.locals.appVersion = appVersion;
+app.local.appEnv = appEnv;
 app.locals.hasFilesystem = hasFilesystem;
 app.locals.hasSecret = hasSecret;
 app.locals.hasConfigMap = hasConfigMap;
