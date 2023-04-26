@@ -494,12 +494,10 @@ function detectCloudColor() {
     return 'Azure Functions';
   } else if (process.env.HEROKU_APP_NAME) {
     return 'Heroku';
-  } else if (process.env.RED) {
-    return 'st';  
   } else if (process.env.ORANGE) {
     return 'class="card-pf-title text-warning mb-3" style="height: 22px;"';
   } else if (process.env.BLUE) {
-    return 'st';  
+    return 'class="card-pf-title text-info mb-3" style="height: 22px;"';  
   } else if (process.env.GREEN) {
     return 'st';  
   } else {
