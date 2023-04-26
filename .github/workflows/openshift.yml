@@ -441,6 +441,7 @@ jobs:
     - name: Set OSD environment variable
       run: |
         oc set env deployment/ostoy OSD=true
+        oc set env deployment/ostoy GREEN=true
 
   rosa2-ci-cd:
     name: ROSA Prod deployment
@@ -518,3 +519,4 @@ jobs:
     - name: Set ROSA environment variable
       run: |
         oc set env deployment/ostoy ROSA=true
+        oc set env deployment/ostoy ORANGE=true
