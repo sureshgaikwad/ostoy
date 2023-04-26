@@ -491,7 +491,7 @@ app.get('/about', function(request, response) {
   START SERVER
  */
 console.log(`Version: ${appVersion}` );
-console.log(This app is running on: ${cloudEnvironment} );
+console.log(`This app is running on: ${cloudEnvironment}` );
 
 //the first time the app is run this will be set to false thus requiring a check
 //of if the app can access the S3 bucket
