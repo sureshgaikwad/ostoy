@@ -363,6 +363,7 @@ jobs:
     - name: Set ARO environment variable
       run: |
         oc set env deployment/ostoy ARO=true
+        oc set env deployment/ostoy BLUE=true
 
   gcp-ci-cd:
     name: OSD on GCP OpenShift deployment
