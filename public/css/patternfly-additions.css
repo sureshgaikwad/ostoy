@@ -2585,7 +2585,7 @@ select.selectpicker {
 }
 .blank-slate-pf {
   background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
+  border: <%= cloudBorder %>;
   border-radius: 1px;
   margin-bottom: 20px;
   padding: 30px;
