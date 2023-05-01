@@ -476,7 +476,7 @@ function detectCloudEnvironment() {
   } else if (process.env.ARO) {
     return 'ARO';  
   } else if (process.env.OSD) {
-    return 'OSD';  
+    return 'OSD on GCP';  
   } else {
     return 'Unknown or Local';
   }
