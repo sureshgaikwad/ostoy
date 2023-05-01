@@ -518,11 +518,11 @@ function detectCloudBorder() {
   } else if (process.env.HEROKU_APP_NAME) {
     return 'Heroku';
   } else if (process.env.ORANGEB) {
-    return '20px solid #EC7A08;';
+    return 'blank-slate-pf-rosa';
   } else if (process.env.BLUEB) {
-    return '20px solid #31708F;';  
+    return 'blank-slate-pf-aro';  
   } else if (process.env.GREENB) {
-    return '20px solid #3C763D;';  
+    return 'blank-slate-pf-gcp';  
   } else {
     return 'Unknown or Local';
   }
