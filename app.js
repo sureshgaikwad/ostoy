@@ -508,6 +508,29 @@ function detectCloudColor() {
 const cloudColor = detectCloudColor();
 app.locals.cloudColor = cloudColor;
 
+function detectCloudBorder() {
+  if (process.env.AWS_EXECUTION_ENV) {
+    return 'AWS Lambda';
+  } else if (process.env.GCP_PROJECT || process.env.GOOGLE_CLOUD_PROJECT) {
+    return 'Google Cloud';
+  } else if (process.env.AZURE_FUNCTIONS_ENVIRONMENT) {
+    return 'Azure Functions';
+  } else if (process.env.HEROKU_APP_NAME) {
+    return 'Heroku';
+  } else if (process.env.ORANGEB) {
+    return '20px solid #EC7A08;';
+  } else if (process.env.BLUEB) {
+    return '20px solid #31708F;';  
+  } else if (process.env.GREENB) {
+    return '20px solid #3C763D;';  
+  } else {
+    return 'Unknown or Local';
+  }
+}
+
+const cloudBorder = detectCloudBorder();
+app.locals.cloudBorder = cloudBorder;
+
 /*
   ABOUT URLS/FUNCTIONS
  */
