@@ -198,7 +198,7 @@ jobs:
     environment: build
     
     steps: 
-   - name: Build and deploy to quay
+    - name: Build and deploy to quay
       run: |
         echo "hi"
     - name: Build and push to Quay
