@@ -2585,12 +2585,40 @@ select.selectpicker {
 }
 .blank-slate-pf {
   background-color: #f5f5f5;
-  border: <%= cloudBorder %>;
+  border: 1px solid #e3e3e3;
   border-radius: 1px;
   margin-bottom: 20px;
   padding: 30px;
   text-align: center;
 }
+
+.blank-slate-pf-rosa {
+  background-color: #f5f5f5;
+  border: 20px solid #EC7A08;
+  border-radius: 1px;
+  margin-bottom: 20px;
+  padding: 30px;
+  text-align: center;
+}
+
+.blank-slate-pf-aro {
+  background-color: #f5f5f5;
+  border: 20px solid #31708F;
+  border-radius: 1px;
+  margin-bottom: 20px;
+  padding: 30px;
+  text-align: center;
+}
+
+.blank-slate-pf-gcp {
+  background-color: #f5f5f5;
+  border: 20px solid #3C763D;
+  border-radius: 1px;
+  margin-bottom: 20px;
+  padding: 30px;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .blank-slate-pf {
     padding: 60px 60px;
