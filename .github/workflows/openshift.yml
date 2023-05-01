@@ -281,6 +281,7 @@ jobs:
       run: |
         oc set env deployment/ostoy ROSA=true
         oc set env deployment/ostoy ORANGE=true
+        oc set env deployment/ostoy ORANGEB=true
 
   aro-ci-cd:
     name: ARO deployment
@@ -364,6 +365,7 @@ jobs:
       run: |
         oc set env deployment/ostoy ARO=true
         oc set env deployment/ostoy BLUE=true
+        oc set env deployment/ostoy BLUEB=true
 
   gcp-ci-cd:
     name: OSD on GCP OpenShift deployment
@@ -442,6 +444,7 @@ jobs:
       run: |
         oc set env deployment/ostoy OSD=true
         oc set env deployment/ostoy GREEN=true
+        oc set env deployment/ostoy GREENB=true
 
   rosa2-ci-cd:
     name: ROSA Prod deployment
@@ -520,3 +523,4 @@ jobs:
       run: |
         oc set env deployment/ostoy ROSA=true
         oc set env deployment/ostoy ORANGE=true
+        oc set env deployment/ostoy ORANGEB=true
