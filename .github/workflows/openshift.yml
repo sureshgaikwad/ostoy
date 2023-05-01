@@ -91,11 +91,11 @@ jobs:
     runs-on: ubuntu-20.04
     environment: development
 
-   outputs:
-     ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
+    outputs:
+      ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
       SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
       MSVC_IMAGE: ${{ steps.push-image.outputs.registry-path }}
-     FEND_IMAGE: ${{ steps.push-image-frontend.outputs.registry-path }}
+      FEND_IMAGE: ${{ steps.push-image-frontend.outputs.registry-path }}
       ARO_LIVE: ${{ env.ARO_LIVE }}
       GCP_LIVE: ${{ env.GCP_LIVE }}
       ROSA_LIVE: ${{ env.ROSA_LIVE }}
