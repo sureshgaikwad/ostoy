@@ -2,10 +2,10 @@
 
 <%- include('templates/nav.ejs', {page: 'home'}); %>
 
-<div class="blank-slate-pf container-pf-nav-pf-vertical">
-    <h1>
+<div class="<%= cloudBorder %> container-pf-nav-pf-vertical">
+    <h1 class="<%= cloudColor %>">
         <span class="pficon pficon-home small"></span>
-        OSToy
+        OSToy running on <b><%= cloudEnvironment %></b>
     </h1>
 
     <div class="row row-cards-pf">

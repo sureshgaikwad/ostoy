@@ -462,6 +462,75 @@ function processDNS(hostname, response) {
   });
 }
 
+function detectCloudEnvironment() {
+  if (process.env.AWS_EXECUTION_ENV) {
+    return 'AWS Lambda';
+  } else if (process.env.GCP_PROJECT || process.env.GOOGLE_CLOUD_PROJECT) {
+    return 'Google Cloud';
+  } else if (process.env.AZURE_FUNCTIONS_ENVIRONMENT) {
+    return 'Azure Functions';
+  } else if (process.env.HEROKU_APP_NAME) {
+    return 'Heroku';
+  } else if (process.env.ROSA) {
+    return 'ROSA';  
+  } else if (process.env.ARO) {
+    return 'ARO';  
+  } else if (process.env.OSD) {
+    return 'OSD on GCP';  
+  } else {
+    return 'Unknown or Local';
+  }
+}
+
+const cloudEnvironment = detectCloudEnvironment();
+app.locals.cloudEnvironment = cloudEnvironment;
+
+function detectCloudColor() {
+  if (process.env.AWS_EXECUTION_ENV) {
+    return 'AWS Lambda';
+  } else if (process.env.GCP_PROJECT || process.env.GOOGLE_CLOUD_PROJECT) {
+    return 'Google Cloud';
+  } else if (process.env.AZURE_FUNCTIONS_ENVIRONMENT) {
+    return 'Azure Functions';
+  } else if (process.env.HEROKU_APP_NAME) {
+    return 'Heroku';
+  } else if (process.env.ORANGE) {
+    return 'class="card-pf-title text-warning mb-3" style="height: 22px;"';
+  } else if (process.env.BLUE) {
+    return 'class="card-pf-title text-info mb-3" style="height: 22px;"';  
+  } else if (process.env.GREEN) {
+    return 'class="card-pf-title text-success mb-3" style="height: 22px;"';  
+  } else {
+    return 'Unknown or Local';
+  }
+}
+
+const cloudColor = detectCloudColor();
+app.locals.cloudColor = cloudColor;
+
+function detectCloudBorder() {
+  if (process.env.AWS_EXECUTION_ENV) {
+    return 'AWS Lambda';
+  } else if (process.env.GCP_PROJECT || process.env.GOOGLE_CLOUD_PROJECT) {
+    return 'Google Cloud';
+  } else if (process.env.AZURE_FUNCTIONS_ENVIRONMENT) {
+    return 'Azure Functions';
+  } else if (process.env.HEROKU_APP_NAME) {
+    return 'Heroku';
+  } else if (process.env.ORANGEB) {
+    return 'blank-slate-pf-rosa';
+  } else if (process.env.BLUEB) {
+    return 'blank-slate-pf-aro';  
+  } else if (process.env.GREENB) {
+    return 'blank-slate-pf-gcp';  
+  } else {
+    return 'Unknown or Local';
+  }
+}
+
+const cloudBorder = detectCloudBorder();
+app.locals.cloudBorder = cloudBorder;
+
 /*
   ABOUT URLS/FUNCTIONS
  */
@@ -474,6 +543,7 @@ app.get('/about', function(request, response) {
   START SERVER
  */
 console.log(`Version: ${appVersion}` );
+console.log(`This app is running on: ${cloudEnvironment}` );
 
 //the first time the app is run this will be set to false thus requiring a check
 //of if the app can access the S3 bucket
