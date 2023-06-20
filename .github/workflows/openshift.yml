@@ -30,8 +30,8 @@ env:
   # 🖊️ EDIT your repository secrets to log into your OpenShift cluster and set up the context.
   # See https://github.com/redhat-actions/oc-login#readme for how to retrieve these values.
   # To get a permanent token, refer to https://github.com/redhat-actions/oc-login/wiki/Using-a-Service-Account-for-GitHub-Actions
-  OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
-  OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+  ROSA_SERVER: ${{ secrets.ROSA_SERVER }}
+  ROSA_TOKEN: ${{ secrets.ROSA_TOKEN }}
   ARO_SERVER: ${{ secrets.ARO_SERVER }}
   ARO_TOKEN: ${{ secrets.ARO_TOKEN }}
   GCP_SERVER: ${{ secrets.GCP_SERVER }}
