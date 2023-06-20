@@ -93,7 +93,7 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v3
     
-      - name: Determine app name
+    - name: Determine app name
       if: env.APP_NAME == ''
       run: |
         echo "APP_NAME=$(basename $PWD)" | tee -a $GITHUB_ENV
