@@ -36,15 +36,15 @@ env:
   ARO_TOKEN: ${{ secrets.ARO_TOKEN }}
   GCP_SERVER: ${{ secrets.GCP_SERVER }}
   GCP_TOKEN: ${{ secrets.GCP_TOKEN }}
-  OPENSHIFT_SERVER_TWO: ${{ secrets.OPENSHIFT_SERVER_TWO }}
-  OPENSHIFT_TOKEN_TWO: ${{ secrets.OPENSHIFT_TOKEN_TWO }}
+  ROSA_SERVER_PROD: ${{ secrets.ROSA_SERVER_PROD }}
+  ROSA_TOKEN_PROD: ${{ secrets.ROSA_TOKEN_PROD }}
   ARO_LIVE: ${{ vars.ARO_LIVE }}
   GCP_LIVE: ${{ vars.GCP_LIVE }}
   ROSA_LIVE: ${{ vars.ROSA_LIVE }}
   # 🖊️ EDIT to set the kube context's namespace after login. Leave blank to use your user's default namespace.
   OPENSHIFT_NAMESPACE: ""
-  QUAY_FEND_LINK: ${{ secrets.QUAY_FEND_LINK }}
-  QUAY_BEND_LINK: ${{ secrets.QUAY_BEND_LINK }}
+  #QUAY_FEND_LINK: ${{ secrets.QUAY_FEND_LINK }}
+  #QUAY_BEND_LINK: ${{ secrets.QUAY_BEND_LINK }}
 
   # 🖊️ EDIT to set a name for your OpenShift app, or a default one will be generated below.
   APP_NAME: "ostoy-microservice"
@@ -89,14 +89,45 @@ jobs:
     runs-on: ubuntu-20.04
     environment: build
     
-    steps: 
-    - name: Build and deploy to quay
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+    
+      - name: Determine app name
+      if: env.APP_NAME == ''
       run: |
-        echo "hi"
-    - name: Build and push to Quay
-      uses: juliangruber/sleep-action@v1
+        echo "APP_NAME=$(basename $PWD)" | tee -a $GITHUB_ENV
+
+    - name: Determine image tags
+      if: env.IMAGE_TAGS == ''
+      run: |
+        echo "IMAGE_TAGS=latest ${GITHUB_SHA::12}" | tee -a $GITHUB_ENV
+
+    # https://github.com/redhat-actions/buildah-build#readme
+    - name: Build from Dockerfile
+      id: build-image
+      uses: redhat-actions/buildah-build@v2
       with:
-       time: 17s
+        image: ${{ env.APP_NAME }}
+        tags: ${{ env.IMAGE_TAGS }}
+
+        # If you don't have a Dockerfile/Containerfile, refer to https://github.com/redhat-actions/buildah-build#scratch-build-inputs
+        # Or, perform a source-to-image build using https://github.com/redhat-actions/s2i-build
+        # Otherwise, point this to your Dockerfile/Containerfile relative to the repository root.
+        dockerfiles: |
+          ./Dockerfile
+
+    # https://github.com/redhat-actions/push-to-registry#readme
+    - name: Push to Quay registry
+      id: push-image
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        image: ${{ steps.build-image.outputs.image }}
+        tags: ${{ steps.build-image.outputs.tags }}
+        registry: ${{ env.IMAGE_REGISTRY }}
+        username: ${{ env.IMAGE_REGISTRY_USER }}
+        password: ${{ env.IMAGE_REGISTRY_PASSWORD }}
+    
     
   rosa-deploy:
     name: ROSA Deployment - Dev
@@ -137,8 +168,8 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        # image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
-        image: ${{ env.QUAY_FEND_LINK }}
+        image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
+        #image: ${{ env.QUAY_FEND_LINK }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
