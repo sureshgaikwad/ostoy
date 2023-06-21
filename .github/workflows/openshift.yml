@@ -266,8 +266,8 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        # image: ${{ needs.image-ci-cd.outputs.MSVC_IMAGE }}
-        image: ${{ env.QUAY_BEND_LINK }}
+        image: ${{ needs.image-ci-cd.outputs.MSVC_IMAGE }}
+        #image: ${{ env.QUAY_BEND_LINK }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -276,8 +276,8 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        # image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
-        image: ${{ env.QUAY_FEND_LINK }}
+        image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
+        #image: ${{ env.QUAY_FEND_LINK }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
@@ -345,8 +345,8 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        # image: ${{ needs.image-ci-cd.outputs.MSVC_IMAGE }}
-        image: ${{ env.QUAY_BEND_LINK }}
+        image: ${{ needs.image-ci-cd.outputs.MSVC_IMAGE }}
+        #image: ${{ env.QUAY_BEND_LINK }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -355,8 +355,8 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        # image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
-        image: ${{ env.QUAY_FEND_LINK }}
+        image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
+        #image: ${{ env.QUAY_FEND_LINK }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
@@ -424,8 +424,8 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: ${{ env.APP_NAME }}
-        # image: ${{ needs.image-ci-cd.outputs.MSVC_IMAGE }}
-        image: ${{ env.QUAY_BEND_LINK }}
+        image: ${{ needs.image-ci-cd.outputs.MSVC_IMAGE }}
+        #image: ${{ env.QUAY_BEND_LINK }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
 
@@ -434,8 +434,8 @@ jobs:
       uses: redhat-actions/oc-new-app@v1
       with:
         app_name: 'ostoy'
-        # image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
-        image: ${{ env.QUAY_FEND_LINK }}
+        image: ${{ needs.image-ci-cd.outputs.FEND_IMAGE }}
+        #image: ${{ env.QUAY_FEND_LINK }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         port: ${{ env.APP_PORT }}
         build_env: 'MICROSERVICE_NAME=OSTOY_MICROSERVICE'
